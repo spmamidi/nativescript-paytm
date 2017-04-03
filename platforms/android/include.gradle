@@ -1,0 +1,8 @@
+
+android {
+  productFlavors {
+    "nativescript-paytm" {
+      dimension "nativescript-paytm"
+    }
+  }
+}

@@ -15,7 +15,7 @@ export function pageLoaded(args: observable.EventData) {
 export function onTap() {
     console.log('on tap initiated');
     let paytm = new PaytmPlugin();
-
+    console.dump(paytm);
     let date = new Date();
     var paytmData = {
         merchant: {
