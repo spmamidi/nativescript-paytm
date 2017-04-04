@@ -203,7 +203,7 @@ declare module com {
 				public static getService(): com.paytm.pgsdk.PaytmPGService;
 				public stopService(): void;
 				public static getStagingService(): com.paytm.pgsdk.PaytmPGService;
-				public initialize(param0: com.paytm.pgsdk.PaytmOrder, param1: com.paytm.pgsdk.PaytmMerchant, param2: com.paytm.pgsdk.PaytmClientCertificate): void;
+				public initialize(param0: com.paytm.pgsdk.PaytmOrder, param2: com.paytm.pgsdk.PaytmClientCertificate): void;
 				public enableLog(param0: androidcontentContext): void;
 				public static getProductionService(): com.paytm.pgsdk.PaytmPGService;
 				public constructor();

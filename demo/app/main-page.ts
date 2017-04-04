@@ -26,7 +26,7 @@ export function onTap() {
             website: "WEB_STAGING"
         },
         customer: {
-            id: 'C' + date.getTime(),
+            id: "sarvagayatri@gmail.com", //'C' + date.getTime(),
             email: "sarvagayatri@gmail.com",
             mobileNumber: "8689835231",
             orderId: 'O' + date.getTime(),
