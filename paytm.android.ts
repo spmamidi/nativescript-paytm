@@ -3,9 +3,9 @@ var utils = require("utils/utils");
 
 // ignore TS error
 
-export class PaytmPlugin  {
+export class PaytmPlugin {
 
-     public payment(args) {
+    public payment(args) {
         console.dump(com.paytm);
         let service = com.paytm.pgsdk.PaytmPGService.getStagingService();
 
@@ -51,41 +51,51 @@ export class PaytmPlugin  {
 
         // //Set PaytmOrder and PaytmMerchant objects. Call this method and set both objects before starting transaction.
         service.initialize(order, merchant, null);
+
+
+        let callbacks = new com.paytm.pgsdk.PaytmPaymentTransactionCallback({
+            onTransactionSuccess: (paramBundle) => {
+                console.log('on transaction success');
+                // app.android.widget.Toast.makeText(app.app.android.context, "Transaction Successful", app.android.widget.Toast.LENGTH_SHORT).show();
+            },
+
+            onTransactionFailure: (paramString, paramBundle) => {
+                console.log('on transaction failure');
+
+                // app.android.widget.Toast.makeText(app.app.android.context, "Transaction Failure", app.android.widget.Toast.LENGTH_SHORT).show();
+            },
+
+            networkNotAvailable: () => {
+                console.log('on networkNotAvailable');
+                // app.android.widget.Toast.makeText(app.app.android.context, "Check Network connection", app.android.widget.Toast.LENGTH_SHORT).show();
+            },
+
+            clientAuthenticationFailed: (paramString) => {
+                console.log('on clientAuthenticationFailed');
+                // app.android.widget.Toast.makeText(app.app.android.context, "Client Authentication Failed", app.android.widget.Toast.LENGTH_SHORT).show();
+            },
+
+            someUIErrorOccurred: (paramString) => {
+                console.log('on someUIErrorOccurred');
+                // app.android.widget.Toast.makeText(app.app.android.context, "UI Error Occur", app.android.widget.Toast.LENGTH_SHORT).show();
+            },
+
+            onErrorLoadingWebPage: (paramInt, paramString1, paramString2) => {
+                console.log('on error loading webpage');
+                // app.android.widget.Toast.makeText(app.app.android.context, "Error On Loading", app.android.widget.Toast.LENGTH_SHORT).show();
+            },
+
+            onBackPressedCancelTransaction: () => {
+                console.log('on onBackPressedCancelTransaction');
+                // app.android.widget.Toast.makeText(app.app.android.context, "Back Button pressed by user", app.android.widget.Toast.LENGTH_SHORT).show();
+            }
+        });
         console.log("Service intialised");
 
+
+        // app.android.widget.Toast.makeText(app.app.android.context, "starting payment transaction", app.android.widget.Toast.LENGTH_SHORT).show();
         //Start the Payment Transaction. Before starting the transaction ensure that initialize method is called.
-        service.startPaymentTransaction(
-            utils.ad.getApplicationContext(), false, true,
-            new com.paytm.pgsdk.PaytmPaymentTransactionCallback({
-                onTransactionSuccess: function (paramBundle) {
-                    app.android.widget.Toast.makeText(app.app.android.context, "Transaction Successful", app.android.widget.Toast.LENGTH_SHORT).show();
-                },
-
-                onTransactionFailure: function (paramString, paramBundle) {
-                    app.android.widget.Toast.makeText(app.app.android.context, "Transaction Failure", app.android.widget.Toast.LENGTH_SHORT).show();
-                },
-
-                networkNotAvailable: function () {
-                    app.android.widget.Toast.makeText(app.app.android.context, "Check Network connection", app.android.widget.Toast.LENGTH_SHORT).show();
-                },
-
-                clientAuthenticationFailed: function (paramString) {
-                    app.android.widget.Toast.makeText(app.app.android.context, "Client Authentication Failed", app.android.widget.Toast.LENGTH_SHORT).show();
-                },
-
-                someUIErrorOccurred: function (paramString) {
-                    app.android.widget.Toast.makeText(app.app.android.context, "UI Error Occur", app.android.widget.Toast.LENGTH_SHORT).show();
-                },
-
-                onErrorLoadingWebPage: function (paramInt, paramString1, paramString2) {
-                    app.android.widget.Toast.makeText(app.app.android.context, "Error On Loading", app.android.widget.Toast.LENGTH_SHORT).show();
-                },
-
-                onBackPressedCancelTransaction: function () {
-                    app.android.widget.Toast.makeText(app.app.android.context, "Back Button pressed by user", app.android.widget.Toast.LENGTH_SHORT).show();
-                }
-            })
-        );
+        service.startPaymentTransaction(utils.ad.getApplicationContext(), true, true, callbacks);
     }
 }
 

@@ -15,6 +15,7 @@ export function pageLoaded(args: observable.EventData) {
 export function onTap() {
     console.log('on tap initiated');
     let paytm = new PaytmPlugin();
+    console.log(JSON.stringify(paytm)); 
     console.dump(paytm);
     let date = new Date();
     var paytmData = {
@@ -37,6 +38,6 @@ export function onTap() {
         }
     };
 
-    this.paytm.payment(paytmData);
+    paytm.payment(paytmData);
 
 }
