@@ -13,8 +13,11 @@
                   android:required="false" />
 
     <application>
-       <activity android:name="com.paytm.pgsdk.PaytmPGActiviy"
-                 android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation|keyboard"/>
+       <activity
+       android:name="com.paytm.pgsdk.PaytmPGActivity"
+        android:screenOrientation="portrait"
+        android:configChanges="keyboardHidden|orientation|keyboard">
+        </activity>
     </application>
     
 </manifest>

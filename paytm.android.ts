@@ -27,7 +27,7 @@ export class PaytmPlugin {
         //     MOBILE_NO: customer.mobileNumber,
         //     REQUEST_TYPE: "DEFAULT"
         // }
-        let paramMap = new java.util.HashMap<java.lang.String, java.lang.String>();
+        let paramMap: java.util.Map<java.lang.String, java.lang.String> = new java.util.HashMap<java.lang.String, java.lang.String>();
         paramMap.put(new java.lang.String("MID"), merchantObject.id);
         paramMap.put(new java.lang.String("ORDER_ID"), customer.orderId);
         paramMap.put(new java.lang.String("CUST_ID"), customer.id);
