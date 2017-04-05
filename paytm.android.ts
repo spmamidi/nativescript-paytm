@@ -35,26 +35,21 @@ export class PaytmPlugin {
         paramMap.put(new java.lang.String("CHANNEL_ID"), merchantObject.channelId);
         paramMap.put(new java.lang.String("TXN_AMOUNT"), customer.txnAmount);
         paramMap.put(new java.lang.String("WEBSITE"), merchantObject.website);
-        //New params added 
         paramMap.put(new java.lang.String("CALLBACK_URL"), checksumUrls.callback);
+        paramMap.put(new java.lang.String("EMAIL"), customer.email);
+        paramMap.put(new java.lang.String("MOBILE_NO"), customer.mobileNumber);
         paramMap.put(new java.lang.String("CHECKSUMHASH"), checksumUrls.checksumHash);
 
         //removed these from mandatory parameters
         // paramMap.put(new java.lang.String("THEME"), new java.lang.String("merchant"));
-        paramMap.put(new java.lang.String("EMAIL"), customer.email);
-        paramMap.put(new java.lang.String("MOBILE_NO"), customer.mobileNumber);
         // paramMap.put(new java.lang.String("REQUEST_TYPE"), new java.lang.String("DEFAULT"));
-
+        
         console.log("parammap:::", paramMap);
 
         let order = new com.paytm.pgsdk.PaytmOrder(paramMap);
         console.log("Order:::", order);
 
-        // //Create new Merchant Object having all merchant configuration.
-        // let merchant = new com.paytm.pgsdk.PaytmMerchant(checksumUrls.generation, checksumUrls.verification);
-        // console.log("Merchant:::", merchant);
-
-        // //Set PaytmOrder and PaytmMerchant objects. Call this method and set both objects before starting transaction.
+        //Set PaytmOrder and PaytmMerchant objects. Call this method and set both objects before starting transaction.
         service.initialize(order, null);
 
 
